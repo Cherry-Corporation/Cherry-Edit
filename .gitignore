@@ -58,3 +58,4 @@ build/updater/updater.pkg
 build/updater/warn-updater.txt
 build/updater/xref-updater.html
 dist/updater.exe
+dist/Cherry-Edit-Installer.exe
