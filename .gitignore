@@ -24,3 +24,21 @@
 # Support for Project snippet scope
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
 __pycache__/key_bindings.cpython-310.pyc
+Cherry-Edit.spec
+__pycache__/Cherry-Edit.cpython-310.pyc
+build/Cherry-Edit/Analysis-00.toc
+build/Cherry-Edit/base_library.zip
+build/Cherry-Edit/Cherry-Edit.exe.manifest
+build/Cherry-Edit/Cherry-Edit.pkg
+build/Cherry-Edit/EXE-00.toc
+.gitignore
+build/Cherry-Edit/PKG-00.toc
+build/Cherry-Edit/PYZ-00.pyz
+build/Cherry-Edit/PYZ-00.toc
+build/Cherry-Edit/Tree-00.toc
+.gitignore
+build/Cherry-Edit/Tree-01.toc
+build/Cherry-Edit/Tree-02.toc
+build/Cherry-Edit/warn-Cherry-Edit.txt
+build/Cherry-Edit/xref-Cherry-Edit.html
+dist/Cherry-Edit.exe

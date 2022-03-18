@@ -1,4 +1,5 @@
 import wget
+repo-url = 'https://github.com/Cherry-Corporation/Cherry-Edit'
 #define update url
 url='https://github.com/Andre-cmd-rgb/Py-Edit/releases/download/1.1/main.exe'
 #define Updater
