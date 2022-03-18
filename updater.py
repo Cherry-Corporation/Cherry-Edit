@@ -1,11 +1,11 @@
 import wget
+import os
 repo-url = 'https://github.com/Cherry-Corporation/Cherry-Edit'
 #define update url
-url='https://github.com/Andre-cmd-rgb/Py-Edit/releases/download/1.1/main.exe'
+url='https://github.com/Cherry-Corporation/Cherry-Edit/releases/download/0.9/Cherry-Edit.exe'
 #define Updater
 def Updater():
+    os.remove("Cherry-Edit.exe")
     filename = wget.download(url)
-    os.remove("main.exe")
-    os.rename('main (1).exe', 'main.exe')
     os.system(exit)
     

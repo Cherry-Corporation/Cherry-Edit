@@ -6,6 +6,7 @@ from tkinter.filedialog import askopenfilename, asksaveasfilename
 from pathlib import Path
 from key_bindings import show_bindings
 import os
+import subprocess
 
 #filecustom=open('theme.txt', 'r')
 #ins=filecustom.readlines()
@@ -244,6 +245,8 @@ def italic(event):
 # Function underlines text in textarea.
 def underline(event):
     textarea['font'] += " underline"
+def Updater():
+    subprocess.Popen("updater.py")
 #def Custom_theme():
 #    textarea['bg'] = ins[1]
 #    textarea['fg'] = ins[2]
