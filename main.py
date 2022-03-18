@@ -6,11 +6,9 @@ from tkinter.filedialog import askopenfilename, asksaveasfilename
 from pathlib import Path
 from key_bindings import show_bindings
 import os
-import wget
 
 #filecustom=open('theme.txt', 'r')
 #ins=filecustom.readlines()
-url='https://github.com/Andre-cmd-rgb/Py-Edit/releases/download/1.1/main.exe'
 # All Functions Here...
 # More comments to be added soon.
 def new():
@@ -246,11 +244,6 @@ def italic(event):
 # Function underlines text in textarea.
 def underline(event):
     textarea['font'] += " underline"
-def Updater():
-    filename = wget.download(url)
-    os.remove("main.exe")
-    os.rename('main (1).exe', 'main.exe')
-    os.system(exit)
 #def Custom_theme():
 #    textarea['bg'] = ins[1]
 #    textarea['fg'] = ins[2]
