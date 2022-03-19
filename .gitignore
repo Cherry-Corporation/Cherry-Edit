@@ -59,3 +59,5 @@ build/updater/warn-updater.txt
 build/updater/xref-updater.html
 dist/updater.exe
 dist/Cherry-Edit-Installer.exe
+dist/Cherry-Edit.exe.notanexecutable
+dist/updater.exe.notanexecutable
