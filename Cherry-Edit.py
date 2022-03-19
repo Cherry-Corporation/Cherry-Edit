@@ -258,7 +258,7 @@ def underline(event):
 
 @cache
 def Updater():
-    subprocess.Popen("updater.py")
+    subprocess.Popen("updater.exe")
 #def Custom_theme():
 #    textarea['bg'] = ins[1]
 #    textarea['fg'] = ins[2]

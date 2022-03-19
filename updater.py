@@ -7,4 +7,4 @@ def Updater():
     os.remove("Cherry-Edit.exe")
     filename = wget.download(url)
     os.system(exit)
-    
+Updater()
