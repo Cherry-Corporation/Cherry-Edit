@@ -278,7 +278,7 @@ width = root.winfo_screenwidth()
 root.geometry(f"{width}x{height}")
 # You can add any icon that you want!
 root.iconbitmap('icon.ico')
-root.title("Py Edit")
+root.title("Cherry Edit")
 
 # Tool bar or Menubar...
 menubar = Menu(root, bg="black")
