@@ -7,11 +7,13 @@ from pathlib import Path
 from key_bindings import show_bindings
 import os
 import subprocess
+from functools import cache
 
 #filecustom=open('theme.txt', 'r')
 #ins=filecustom.readlines()
 # All Functions Here...
 # More comments to be added soon.
+@cache
 def new():
     # New File Function
     global file
@@ -19,7 +21,7 @@ def new():
     root.title("Untitled - Py Edit")
     textarea.delete(1.0, END)
 
-
+@cache
 def new_shortcut(event):
     # New File Function
     global file
@@ -27,7 +29,7 @@ def new_shortcut(event):
     root.title("Untitled - PyEdit")
     textarea.delete(1.0, END)
 
-
+@cache
 def openfile():
     # Open File Function
     global file
@@ -43,7 +45,7 @@ def openfile():
         with open(file, 'r') as f:
             textarea.insert(1.0, f.read())
 
-
+@cache
 def openfile_shortcut(event):
     # Open File Function
     global file
@@ -59,7 +61,7 @@ def openfile_shortcut(event):
         with open(file, 'r') as f:
             textarea.insert(1.0, f.read())
 
-
+@cache
 def savefile():
     # File Save Function
     global file
@@ -79,7 +81,7 @@ def savefile():
             f.write(textarea.get(1.0, END))
             root.title(Path(file).name + "- Editor")
 
-
+@cache
 def savefile_shortcut(event):
     # File Save Function
     global file
@@ -99,25 +101,25 @@ def savefile_shortcut(event):
             f.write(textarea.get(1.0, END))
             root.title(Path(file).name + "- Editor")
 
-
+@cache
 def engaged(event):
     # textarea active status change function
     sbar['text'] = "Status : Writing..."
 
-
+@cache
 def free(event):
     # textarea inactive status change function
     sbar['text'] = "Status : Ready..."
 
-
+@cache
 def fullscreen(event):
     root.attributes('-fullscreen', True)
 
-
+@cache
 def reset_win(event):
     root.attributes('-fullscreen', False)
 
-
+@cache
 def dark_theme():
     textarea['bg'] = 'black'
     textarea['fg'] = 'white'
@@ -125,6 +127,8 @@ def dark_theme():
     textarea['cursor'] = 'arrow'
     sbar['bg'] = 'black'
     sbar['fg'] = 'white'
+
+@cache
 def light_theme():
     textarea['bg'] = 'white'
     textarea['fg'] = 'black'
@@ -134,74 +138,77 @@ def light_theme():
     sbar['bg'] = "white"
     sbar['fg'] = "black"
 
+@cache
 def cut():
     textarea.event_generate('<<Cut>>')
     sbar['text'] = 'Status : Cut Text Successfully!'
 
-
+@cache
 def copy():
     textarea.event_generate('<<Copy>>')
     sbar['text'] = 'Status : Copied Text Successfully!'
 
-
+@cache
 def paste():
     textarea.event_generate('<<Paste>>')
     sbar['text'] = 'Status : Pasted Text Successfully!'
 
-
+@cache
 def key_cut(event):
     sbar['text'] = 'Status : Cut Text Successfully!'
     textarea.event_generate('<<Cut>>')
 
-
+@cache
 def key_copy(event):
     sbar['text'] = 'Status : Copied Text Successfully!'
     textarea.event_generate('<<Copy>>')
 
-
+@cache
 def key_paste(event):
     sbar['text'] = 'Status : Pasted Text Successfully!'
     textarea.event_generate('<<Paste>>')
 
-
+@cache
 def font_color():
     textarea['fg'] = colorchooser.askcolor(title="Pick Font Color")[1]
 
-
+@cache
 def background():
     textarea['bg'] = colorchooser.askcolor(title="Pick Background Color")[1]
 
-
+@cache
 def cursor_color():
     textarea['insertbackground'] = colorchooser.askcolor(
         title="Pick Cursor Color")[1]
 
-
+@cache
 def sbar_color():
     sbar['bg'] = colorchooser.askcolor(title="Pick Status Bar Color")[1]
 
-
+@cache
 def window_color():
     color = colorchooser.askcolor(title="Pick Window Color")[1]
     root.config(bg=color)
 
-
+@cache
 def about():
     askokcancel("About Editor", "Editor Version: 1.0,\n"
                                 "Developer: Andre-Cmd-Rgb.")
 
-
+@cache
 def get_help():
     with open('HELP.md', 'r') as info:
         askokcancel("Information By Editor", info.read())
 
 
 # Shows all key_bindings from key_bindings module.
+@cache
 def keybindings():
     show_bindings()
 
 
 # increases font size from menu.
+@cache
 def increase_font():
     global size, font
     size += 2
@@ -209,7 +216,7 @@ def increase_font():
 
 # Decreases font size from menu.
 
-
+@cache
 def decrease_font():
     global size, font
     size -= 2
@@ -217,7 +224,7 @@ def decrease_font():
 
 # Increases font size with shortcut.
 
-
+@cache
 def font_inc(event):
     global size, font
     size += 2
@@ -225,7 +232,7 @@ def font_inc(event):
 
 # Decreases font size with shortcut.
 
-
+@cache
 def font_dec(event):
     global size, font
     size -= 2
@@ -233,18 +240,23 @@ def font_dec(event):
 
 
 # Function makes text bold in textarea.
+@cache
 def bold(event):
     textarea['font'] += " bold"
 
 
 # Function makes text italic in textarea.
+@cache
 def italic(event):
     textarea['font'] += " italic"
 
 
 # Function underlines text in textarea.
+@cache
 def underline(event):
     textarea['font'] += " underline"
+
+@cache
 def Updater():
     subprocess.Popen("updater.py")
 #def Custom_theme():
