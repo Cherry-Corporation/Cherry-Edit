@@ -8,11 +8,10 @@ from key_bindings import show_bindings
 import os
 import subprocess
 from functools import cache
+from theme_manager import list_available_themes, load_theme_from_file, apply_theme
 
-#filecustom=open('theme.txt', 'r')
-#ins=filecustom.readlines()
-# All Functions Here...
-# More comments to be added soon.
+
+
 @cache
 def new():
     # New File Function
@@ -298,10 +297,20 @@ editmenu.add_command(label='Decrease Font Size ▼', command=decrease_font)
 menubar.add_cascade(label="Edit", menu=editmenu)
 
 colormenu = Menu(menubar, tearoff=False)
-colormenu.add_command(label='Dark Theme', command=dark_theme)
-colormenu.add_command(label='Light Theme', command=light_theme)
-#colormenu.add_command(label='Custom Theme', command=Custom_theme)
+
+# Call the list_available_themes function to get the list of themes
+available_themes = list_available_themes()
+
+# Define a callback function for theme selection
+def select_theme(theme_name):
+    theme_settings = load_theme_from_file(f'themes/{theme_name}.json')
+    apply_theme(theme_settings, textarea, sbar)
+
+for theme in available_themes:
+    colormenu.add_command(label=theme, command=lambda theme=theme: select_theme(theme))  # Use select_theme
 menubar.add_cascade(label="Themes", menu=colormenu)
+
+
 
 helpmenu = Menu(menubar, tearoff=False)
 helpmenu.add_command(label='About Editor', command=about)
@@ -311,8 +320,9 @@ helpmenu.add_command(label='Update', command=Updater)
 menubar.add_cascade(label="More...", menu=helpmenu)
 
 # Status Bar
-sbar = Label(root, text="Status : Ready...", anchor=W, relief=SUNKEN)
+sbar = Label(root, text="Status: Ready...", anchor=W, relief=SUNKEN)
 sbar.pack(side=BOTTOM, fill=X)
+
 
 # Textarea to write...
 textarea = Text(root, font=f"{font} {size}")
