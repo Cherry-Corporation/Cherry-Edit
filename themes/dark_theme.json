@@ -1,7 +1,11 @@
 {
-    "bg_color": "#1e1e1e",
-    "text_color": "#FFFFFF",
-    "cursor_color": "#FF0000",
-    "status_bar_color": "#1e1e1e",
-    "status_bar_text_color": "#FFFFFF"
-}
+  "bg_color": "#1e1e1e",
+  "text_color": "#FFFFFF",
+  "cursor_color": "#FF0000",
+  "status_bar_color": "#1e1e1e",
+  "status_bar_text_color": "#FFFFFF",
+  "keyword_color": "deep sky blue",
+  "string_color": "light green",
+  "comment_color": "red"
+  }
+  

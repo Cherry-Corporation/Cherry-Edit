@@ -11,6 +11,45 @@ from functools import cache
 from theme_manager import list_available_themes, load_theme_from_file, apply_theme
 
 
+import re
+
+
+def highlight_syntax(event=None):
+    content = textarea.get("1.0", "end")
+    
+    # Define syntax keywords
+    keywords = ['def', 'if', 'else', 'elif', 'for', 'while', 'import', 'from', 'as', 'return']
+
+    # Highlight keywords
+    for keyword in keywords:
+        start_index = "1.0"
+        while True:
+            start_index = textarea.search(keyword, start_index, stopindex=END, nocase=1, regexp=True)
+            if not start_index:
+                break
+            end_index = f"{start_index}+{len(keyword)}c"
+            textarea.tag_add('keyword', start_index, end_index)
+            start_index = end_index
+
+    # Define syntax patterns for strings and comments
+    patterns = [
+        (r'(\'\'\'[\s\S]*?\'\'\'|\"\"\"[\s\S]*?\"\"\")|(\"[^\"]*\")|(\'[^\']*\')', 'string'),  # Strings
+        (r'#.*', 'comment'),  # Comments
+    ]
+
+    # Apply syntax highlighting for strings and comments
+    for pattern, tag in patterns:
+        for match in re.finditer(pattern, content):
+            start_index = "1.0" + str(match.start())
+            end_index = "1.0" + str(match.end())
+            textarea.tag_add(tag, start_index, end_index)
+
+
+
+
+def on_text_change(event):
+    textarea.after(50, highlight_syntax)  # Delay the syntax highlighting to allow the text to update first
+
 
 @cache
 def new():
@@ -328,12 +367,9 @@ sbar.pack(side=BOTTOM, fill=X)
 textarea = Text(root, font=f"{font} {size}")
 textarea.pack(fill=BOTH, expand=True, padx=0, pady=0)
 
-# Adding Vertical ScrollBar...
-vscroll = Scrollbar(textarea)
-vscroll.pack(fill=Y, side=RIGHT)
-vscroll.config(command=textarea.yview)
-textarea.config(yscrollcommand=vscroll.set)
-
+# Remove the scrollbar
+textarea.config(yscrollcommand=None)  # Disable vertical scrolling
+textarea.bind('<KeyRelease>', on_text_change)
 # Key Bindings...
 textarea.bind('<Control-x>', key_cut)
 textarea.bind('<Control-c>', key_copy)
@@ -350,7 +386,11 @@ textarea.bind('<Control-u>', underline)
 textarea.bind('<Control-o>', openfile_shortcut)
 textarea.bind('<Control-n>', new_shortcut)
 textarea.bind('<Control-s>', savefile_shortcut)
+textarea.bind('<Key>', highlight_syntax)
+textarea.bind('<Button-1>', highlight_syntax)  # Mouse click
 
+select_theme('dark_theme')
 # Root Configuration and Mainloop...
 root.config(menu=menubar)
 root.mainloop()
+
